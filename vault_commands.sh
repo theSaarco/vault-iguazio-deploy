@@ -8,9 +8,16 @@ vault write auth/kubernetes/config \
         kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
 
 vault policy write mlrun-api-full /home/vault/mlrun_api_full_policy.hcl
+vault policy write admin-full /home/vault/admin_user_policy.hcl
 
 vault write auth/kubernetes/role/mlrun-role-user-mlrun-api \
-	bound_service_account_names=mlrun-api,jupyter-job-executor \
+	bound_service_account_names=mlrun-api \
 	bound_service_account_namespaces=default-tenant \
 	policies=mlrun-api-full \
 	ttl=12h
+
+vault write auth/kubernetes/role/mlrun-role-user-admin \
+        bound_service_account_names=jupyter-job-executor \
+        bound_service_account_namespaces=default-tenant \
+        policies=admin-full \
+        ttl=12h
