@@ -43,7 +43,7 @@ After executing everything, you will have the following things deployed and conf
 
 ### Through UI
 
-As mentioned, the Vault Helm chart also installs an ingress that can be used to access the Vault UI (which is turned on by default in our defaults file). To get the URL for the UI, look for the ingress:
+As mentioned, the Vault Helm chart also installs an ingress that can be used to access the Vault UI (which is turned on by default in the [overrides.yaml](./overrides.yaml) file). To get the URL for the UI, look for the ingress:
 
 ```bash
 $ kubectl -n vault get ingress vault
@@ -64,7 +64,7 @@ kubectl -n vault exec -it vault-0 -- /bin/sh
 Once you're in the pod, run Vault CLI commands as usual. For example:
 
 ```bash
-/ $ vault read auth/kubernetes/role/mlrun-role-user-mlrun-api
+$ vault read auth/kubernetes/role/mlrun-role-user-mlrun-api
 Key                                 Value
 ---                                 -----
 bound_service_account_names         [mlrun-api jupyter]
