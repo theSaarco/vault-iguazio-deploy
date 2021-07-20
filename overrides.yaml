@@ -69,5 +69,5 @@ server:
       }
 
 ui:
-  enabled: false
+  enabled: true
 
